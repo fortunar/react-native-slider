@@ -251,11 +251,11 @@ var Slider = React.createClass({
 
     var minimumTrackStyle = {
       position: 'absolute',
-      width: Animated.add(thumbLeft, thumbSize.width / 2),
-      marginTop: -trackSize.height,
+      width: Animated.add(thumbLeft,   trackSize.height),
       backgroundColor: minimumTrackTintColor,
-      ...valueVisibleStyle
+      ...valueVisibleStyle,
     };
+    // console.log('render');
 
     var touchOverflowStyle = this._getTouchOverflowStyle();
 
@@ -264,7 +264,7 @@ var Slider = React.createClass({
         <View
           style={[{backgroundColor: maximumTrackTintColor,}, mainStyles.track, trackStyle]}
           onLayout={this._measureTrack} />
-        <Animated.View style={[mainStyles.track, trackStyle, minimumTrackStyle]} />
+        <Animated.View style={[mainStyles.track, trackStyle, minimumTrackStyle, {borderRadius: 28, borderTopRightRadius: 28, borderBottomRightRadius: 28}]} />
         <Animated.View
           onLayout={this._measureThumb}
           style={[
@@ -273,12 +273,13 @@ var Slider = React.createClass({
             {
               transform: [
                 { translateX: thumbLeft },
-                { translateY: -(trackSize.height + thumbSize.height) / 2 }
+                { translateY: (trackSize.height - thumbSize.height) / 2 }
               ],
               ...valueVisibleStyle
             }
-          ]}
-        />
+          ]}>
+          <Image style={{width: 56, height: 56, resizeMode: 'contain', position: 'relative', top: 2, left: 1}} source={require('./resources/slider_button.png')} />
+        </Animated.View>
         <View
           style={[defaultStyles.touchArea, touchOverflowStyle]}
           {...this._panResponder.panHandlers}>
@@ -382,7 +383,7 @@ var Slider = React.createClass({
 
   _getValue(gestureState: Object) {
     var length = this.state.containerSize.width - this.state.thumbSize.width;
-    var thumbLeft = this._previousLeft + gestureState.dx;
+    var thumbLeft = this._previousLeft - gestureState.dy;
 
     var ratio = thumbLeft / length;
 
@@ -502,7 +503,7 @@ var Slider = React.createClass({
 
 var defaultStyles = StyleSheet.create({
   container: {
-    height: 40,
+    // height: 200,
     justifyContent: 'center',
   },
   track: {
