@@ -10,7 +10,8 @@ import {
   StyleSheet,
   PanResponder,
   View,
-  Easing
+  Easing,
+  Image
 } from "react-native";
 
 const shallowCompare = require('react-addons-shallow-compare'),
