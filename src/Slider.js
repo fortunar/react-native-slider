@@ -252,13 +252,12 @@ var Slider = React.createClass({
     var minimumTrackStyle = {
       position: 'absolute',
       width: Animated.add(thumbLeft, thumbSize.width / 2),
-      marginTop: -trackSize.height,
+      // marginTop: -trackSize.height - 10,
       backgroundColor: minimumTrackTintColor,
       ...valueVisibleStyle
     };
 
     var touchOverflowStyle = this._getTouchOverflowStyle();
-
     return (
       <View {...other} style={[mainStyles.container, style]} onLayout={this._measureContainer}>
         <View
@@ -273,7 +272,7 @@ var Slider = React.createClass({
             {
               transform: [
                 { translateX: thumbLeft },
-                { translateY: -(trackSize.height + thumbSize.height) / 2 }
+                { translateY:  -trackSize.height }
               ],
               ...valueVisibleStyle
             }
