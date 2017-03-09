@@ -236,7 +236,8 @@ var Slider = React.createClass({
       trackStyle,
       thumbStyle,
       debugTouchArea,
-      ...other
+      ...other,
+      renderThumbImage
     } = this.props;
     var {value, containerSize, trackSize, thumbSize, allMeasured} = this.state;
     var mainStyles = styles || defaultStyles;
@@ -279,7 +280,7 @@ var Slider = React.createClass({
               ...valueVisibleStyle
             }
           ]}>
-          <Image style={{width: 56, height: 56, resizeMode: 'contain', position: 'relative', top: 2, left: 1}} source={require('./resources/slider_button.png')} />
+          {renderThumbImage({width: 56, height: 56, resizeMode: 'contain', position: 'relative', top: 2, left: 1})}
         </Animated.View>
         <View
           style={[defaultStyles.touchArea, touchOverflowStyle]}
