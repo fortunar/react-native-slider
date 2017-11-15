@@ -10,7 +10,8 @@ import {
   StyleSheet,
   PanResponder,
   View,
-  Easing
+  Easing,
+  ViewPropTypes
 } from "react-native";
 
 const shallowCompare = require('react-addons-shallow-compare'),
@@ -131,17 +132,17 @@ var Slider = React.createClass({
     /**
      * The style applied to the slider container.
      */
-    style: View.propTypes.style,
+    style: ViewPropTypes.style,
 
     /**
      * The style applied to the track.
      */
-    trackStyle: View.propTypes.style,
+    trackStyle: ViewPropTypes.style,
 
     /**
      * The style applied to the thumb.
      */
-    thumbStyle: View.propTypes.style,
+    thumbStyle: ViewPropTypes.style,
 
     /**
      * Set this to true to visually see the thumb touch rect in green.
